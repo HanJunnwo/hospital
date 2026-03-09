@@ -1,0 +1,49 @@
+name: hospital
+description: "Aplikasi Rumah Sakit - Hospital App"
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.4.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # State Management
+  flutter_bloc: ^8.1.6
+  equatable: ^2.0.5
+
+  # Navigation
+  go_router: ^14.2.7
+
+  # UI & Typography
+  google_fonts: ^6.2.1
+  flutter_svg: ^2.0.10+1
+  smooth_page_indicator: ^1.2.0
+  shimmer: ^3.0.0
+  cached_network_image: ^3.4.1
+
+  # Storage
+  shared_preferences: ^2.3.2
+
+  # Utils
+  cupertino_icons: ^1.0.8
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+  bloc_test: ^9.1.7
+  mocktail: ^1.0.4
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/
+    - assets/illustrations/
+    - assets/icons/
+
+

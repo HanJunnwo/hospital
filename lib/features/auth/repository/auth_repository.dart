@@ -16,7 +16,7 @@ class AuthRepository {
   static const String _keyUserEmail = 'user_email';
 
   // Mock registered users (in a real app this would be an API)
-  static final Map<String, Map<String, String>> _mockUsers = {};
+  // static final Map<String, Map<String, String>> _mockUsers = {};
 
   Future<AuthUserModel> login({
     required String email,

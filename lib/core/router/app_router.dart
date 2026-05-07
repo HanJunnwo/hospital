@@ -5,7 +5,6 @@ import '../../features/splash/bloc/splash_bloc.dart';
 import '../../features/splash/view/splash_page.dart';
 import '../../features/onboarding/bloc/onboarding_bloc.dart';
 import '../../features/onboarding/view/onboarding_page.dart';
-import '../../features/auth/bloc/auth_bloc.dart';
 import '../../features/auth/view/login_page.dart';
 import '../../features/auth/view/register_page.dart';
 import '../../features/main_scaffold/view/main_scaffold.dart';

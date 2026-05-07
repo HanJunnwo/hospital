@@ -109,16 +109,16 @@ class _RegisterViewState extends State<RegisterView>
                 right: 0,
                 child: Container(
                   height: 220,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     gradient: LinearGradient(
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
                       colors: [
-                        const Color(0xFF00B4A0),
+                        Color(0xFF00B4A0),
                         AppColors.secondary,
                       ],
                     ),
-                    borderRadius: const BorderRadius.only(
+                    borderRadius: BorderRadius.only(
                       bottomLeft: Radius.circular(40),
                       bottomRight: Radius.circular(40),
                     ),
@@ -191,11 +191,11 @@ class _RegisterViewState extends State<RegisterView>
                                   decoration: BoxDecoration(
                                     color: AppColors.surface,
                                     borderRadius: BorderRadius.circular(28),
-                                    boxShadow: [
+                                    boxShadow: const [
                                       BoxShadow(
                                         color: AppColors.cardShadow,
                                         blurRadius: 32,
-                                        offset: const Offset(0, 8),
+                                        offset: Offset(0, 8),
                                       ),
                                     ],
                                   ),
@@ -212,8 +212,8 @@ class _RegisterViewState extends State<RegisterView>
                                         const SizedBox(height: 4),
                                         Text(
                                           'Isi informasi di bawah untuk membuat akun baru.',
-                                          style: AppTextStyles.bodySmall
-                                              .copyWith(
+                                          style:
+                                              AppTextStyles.bodySmall.copyWith(
                                             color: AppColors.textSecondary,
                                           ),
                                         ),
@@ -224,7 +224,8 @@ class _RegisterViewState extends State<RegisterView>
                                           label: 'Nama Lengkap',
                                           hint: 'Masukkan nama lengkap',
                                           controller: _nameController,
-                                          prefixIcon: Icons.person_outline_rounded,
+                                          prefixIcon:
+                                              Icons.person_outline_rounded,
                                           validator: (v) {
                                             if (v == null || v.trim().isEmpty) {
                                               return 'Nama tidak boleh kosong';
@@ -311,9 +312,10 @@ class _RegisterViewState extends State<RegisterView>
                                           child: isLoading
                                               ? Container(
                                                   decoration: BoxDecoration(
-                                                    gradient: LinearGradient(
+                                                    gradient:
+                                                        const LinearGradient(
                                                       colors: [
-                                                        const Color(0xFF00B4A0),
+                                                        Color(0xFF00B4A0),
                                                         AppColors.secondary,
                                                       ],
                                                     ),
@@ -341,16 +343,16 @@ class _RegisterViewState extends State<RegisterView>
                                                       _onRegister(context),
                                                   child: Container(
                                                     decoration: BoxDecoration(
-                                                      gradient: LinearGradient(
+                                                      gradient:
+                                                          const LinearGradient(
                                                         colors: [
-                                                          const Color(
-                                                              0xFF00B4A0),
+                                                          Color(0xFF00B4A0),
                                                           AppColors.secondary,
                                                         ],
-                                                        begin:
-                                                            Alignment.centerLeft,
-                                                        end:
-                                                            Alignment.centerRight,
+                                                        begin: Alignment
+                                                            .centerLeft,
+                                                        end: Alignment
+                                                            .centerRight,
                                                       ),
                                                       borderRadius:
                                                           BorderRadius.circular(
@@ -359,7 +361,8 @@ class _RegisterViewState extends State<RegisterView>
                                                         BoxShadow(
                                                           color: AppColors
                                                               .secondary
-                                                              .withOpacity(0.35),
+                                                              .withOpacity(
+                                                                  0.35),
                                                           blurRadius: 16,
                                                           offset: const Offset(
                                                               0, 6),

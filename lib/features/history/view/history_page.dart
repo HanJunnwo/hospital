@@ -7,7 +7,7 @@ class HistoryPage extends StatelessWidget {
   const HistoryPage({super.key});
 
   static final List<_HistoryItem> _items = [
-    _HistoryItem(
+    const _HistoryItem(
       doctorName: 'Dr. Sarah Putri, Sp.JP',
       specialty: 'Kardiologi',
       date: 'Senin, 3 Mar 2026',
@@ -15,7 +15,7 @@ class HistoryPage extends StatelessWidget {
       initials: 'SP',
       isCured: true,
     ),
-    _HistoryItem(
+    const _HistoryItem(
       doctorName: 'Dr. Ahmad Rizki, Sp.M',
       specialty: 'Mata',
       date: 'Jumat, 21 Feb 2026',
@@ -23,7 +23,7 @@ class HistoryPage extends StatelessWidget {
       initials: 'AR',
       isCured: true,
     ),
-    _HistoryItem(
+    const _HistoryItem(
       doctorName: 'Dr. Dewi Lestari, Sp.PD',
       specialty: 'Penyakit Dalam',
       date: 'Selasa, 4 Feb 2026',
@@ -31,7 +31,7 @@ class HistoryPage extends StatelessWidget {
       initials: 'DL',
       isCured: false,
     ),
-    _HistoryItem(
+    const _HistoryItem(
       doctorName: 'Dr. Rudi Setiawan, Sp.B',
       specialty: 'Bedah Umum',
       date: 'Kamis, 15 Jan 2026',
@@ -98,10 +98,10 @@ class HistoryPage extends StatelessWidget {
                     ],
                   ),
                 ),
-                Column(
+                const Column(
                   children: [
                     _SummaryBadge(label: 'Dokter', value: '4'),
-                    const SizedBox(height: 8),
+                    SizedBox(height: 8),
                     _SummaryBadge(label: 'Follow-up', value: '1'),
                   ],
                 ),
@@ -190,11 +190,11 @@ class _HistoryCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: AppColors.surface,
         borderRadius: BorderRadius.circular(16),
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(
             color: AppColors.cardShadow,
             blurRadius: 12,
-            offset: const Offset(0, 4),
+            offset: Offset(0, 4),
           ),
         ],
       ),
@@ -247,7 +247,8 @@ class _HistoryCard extends StatelessWidget {
                       const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
                   decoration: BoxDecoration(
                     color: AppColors.primary.withOpacity(0.07),
-                    borderRadius: BorderRadius.circular(AppConstants.radiusFull),
+                    borderRadius:
+                        BorderRadius.circular(AppConstants.radiusFull),
                   ),
                   child: Text(
                     item.diagnosis,
@@ -282,8 +283,7 @@ class _HistoryCard extends StatelessWidget {
                   color: item.isCured
                       ? AppColors.success.withOpacity(0.1)
                       : AppColors.warning.withOpacity(0.1),
-                  borderRadius:
-                      BorderRadius.circular(AppConstants.radiusFull),
+                  borderRadius: BorderRadius.circular(AppConstants.radiusFull),
                 ),
                 child: Text(
                   item.isCured ? 'Selesai' : 'Follow-up',
@@ -294,7 +294,7 @@ class _HistoryCard extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 8),
-              Icon(
+              const Icon(
                 Icons.arrow_forward_ios_rounded,
                 size: 13,
                 color: AppColors.textHint,

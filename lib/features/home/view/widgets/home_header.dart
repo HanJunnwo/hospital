@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_text_styles.dart';
 import '../../../../core/utils/app_constants.dart';
 
@@ -130,9 +129,7 @@ class HomeHeader extends StatelessWidget {
             ),
             child: Center(
               child: Text(
-                userName.isNotEmpty
-                    ? userName[0].toUpperCase()
-                    : 'U',
+                userName.isNotEmpty ? userName[0].toUpperCase() : 'U',
                 style: AppTextStyles.titleMedium.copyWith(
                   color: Colors.white,
                   fontWeight: FontWeight.w700,

@@ -49,7 +49,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     } on AuthException catch (e) {
       emit(AuthFailure(message: e.message));
     } catch (e) {
-      emit(AuthFailure(message: 'Terjadi kesalahan. Silakan coba lagi.'));
+      emit(const AuthFailure(message: 'Terjadi kesalahan. Silakan coba lagi.'));
     }
   }
 
@@ -69,7 +69,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     } on AuthException catch (e) {
       emit(AuthFailure(message: e.message));
     } catch (e) {
-      emit(AuthFailure(message: 'Terjadi kesalahan. Silakan coba lagi.'));
+      emit(const AuthFailure(message: 'Terjadi kesalahan. Silakan coba lagi.'));
     }
   }
 

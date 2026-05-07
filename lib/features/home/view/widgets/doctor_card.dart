@@ -16,11 +16,11 @@ class DoctorCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: AppColors.surface,
         borderRadius: BorderRadius.circular(AppConstants.radiusL),
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(
             color: AppColors.cardShadow,
             blurRadius: 16,
-            offset: const Offset(0, 4),
+            offset: Offset(0, 4),
           ),
         ],
       ),
@@ -80,8 +80,8 @@ class DoctorCard extends StatelessWidget {
                           horizontal: 8, vertical: 3),
                       decoration: BoxDecoration(
                         color: const Color(0xFFFFF7E6),
-                        borderRadius: BorderRadius.circular(
-                            AppConstants.radiusFull),
+                        borderRadius:
+                            BorderRadius.circular(AppConstants.radiusFull),
                       ),
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
@@ -142,13 +142,10 @@ class DoctorCard extends StatelessWidget {
                       gradient: doctor.isAvailable
                           ? AppColors.primaryGradient
                           : const LinearGradient(
-                              colors: [
-                                AppColors.textHint,
-                                AppColors.textHint
-                              ],
+                              colors: [AppColors.textHint, AppColors.textHint],
                             ),
-                      borderRadius: BorderRadius.circular(
-                          AppConstants.radiusFull),
+                      borderRadius:
+                          BorderRadius.circular(AppConstants.radiusFull),
                       boxShadow: doctor.isAvailable
                           ? [
                               BoxShadow(

@@ -58,9 +58,8 @@ class HomeView extends StatelessWidget {
                         horizontal: AppConstants.paddingM,
                       ),
                       child: SearchBarWidget(
-                        onChanged: (q) => context
-                            .read<HomeBloc>()
-                            .add(HomeDoctorSearched(q)),
+                        onChanged: (q) =>
+                            context.read<HomeBloc>().add(HomeDoctorSearched(q)),
                       ),
                     ),
                   ),
@@ -79,9 +78,8 @@ class HomeView extends StatelessWidget {
                     child: CategorySection(
                       categories: state.categories,
                       selectedIndex: state.selectedCategoryIndex,
-                      onSelected: (i) => context
-                          .read<HomeBloc>()
-                          .add(HomeCategorySelected(i)),
+                      onSelected: (i) =>
+                          context.read<HomeBloc>().add(HomeCategorySelected(i)),
                     ),
                   ),
 
@@ -120,11 +118,12 @@ class HomeView extends StatelessWidget {
                   state.doctors.isEmpty
                       ? SliverToBoxAdapter(
                           child: Padding(
-                            padding: const EdgeInsets.all(AppConstants.paddingL),
+                            padding:
+                                const EdgeInsets.all(AppConstants.paddingL),
                             child: Center(
                               child: Column(
                                 children: [
-                                  Icon(
+                                  const Icon(
                                     Icons.search_off_rounded,
                                     size: 56,
                                     color: AppColors.textHint,
@@ -149,10 +148,9 @@ class HomeView extends StatelessWidget {
                             delegate: SliverChildBuilderDelegate(
                               (context, index) {
                                 return Padding(
-                                  padding:
-                                      const EdgeInsets.only(bottom: 12),
-                                  child: DoctorCard(
-                                      doctor: state.doctors[index]),
+                                  padding: const EdgeInsets.only(bottom: 12),
+                                  child:
+                                      DoctorCard(doctor: state.doctors[index]),
                                 );
                               },
                               childCount: state.doctors.length,
@@ -215,14 +213,14 @@ class _HomeShimmerState extends State<_HomeShimmer>
               _shimmerBox(220, double.infinity, 0),
               const SizedBox(height: 16),
               Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: AppConstants.paddingM),
+                padding: const EdgeInsets.symmetric(
+                    horizontal: AppConstants.paddingM),
                 child: _shimmerBox(52, double.infinity, 12),
               ),
               const SizedBox(height: 16),
               Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: AppConstants.paddingM),
+                padding: const EdgeInsets.symmetric(
+                    horizontal: AppConstants.paddingM),
                 child: _shimmerBox(140, double.infinity, 16),
               ),
               const SizedBox(height: 16),
@@ -281,9 +279,8 @@ class _HomeError extends StatelessWidget {
           Text(message, style: AppTextStyles.bodyMedium),
           const SizedBox(height: 16),
           ElevatedButton.icon(
-            onPressed: () => context
-                .read<HomeBloc>()
-                .add(const HomeRefreshRequested()),
+            onPressed: () =>
+                context.read<HomeBloc>().add(const HomeRefreshRequested()),
             icon: const Icon(Icons.refresh_rounded),
             label: const Text('Coba Lagi'),
           ),

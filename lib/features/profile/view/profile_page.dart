@@ -125,7 +125,7 @@ class _ProfileView extends StatelessWidget {
                     _MenuItem(
                       icon: Icons.person_outline_rounded,
                       label: 'Edit Profil',
-                      onTap: () {},
+                      onTap: () => context.push('/edit-profile'),
                     ),
                     _MenuItem(
                       icon: Icons.phone_outlined,
@@ -147,12 +147,12 @@ class _ProfileView extends StatelessWidget {
                     _MenuItem(
                       icon: Icons.calendar_today_outlined,
                       label: 'Jadwal Saya',
-                      onTap: () {},
+                      onTap: () => context.go('/schedule'),
                     ),
                     _MenuItem(
                       icon: Icons.assignment_outlined,
                       label: 'Riwayat Konsultasi',
-                      onTap: () {},
+                      onTap: () => context.go('/history'),
                     ),
                     _MenuItem(
                       icon: Icons.favorite_outline_rounded,

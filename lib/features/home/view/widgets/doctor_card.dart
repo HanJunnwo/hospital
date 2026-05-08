@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_text_styles.dart';
 import '../../../../core/utils/app_constants.dart';
@@ -11,7 +12,9 @@ class DoctorCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return GestureDetector(
+      onTap: () => context.push('/doctor/${doctor.id}'),
+      child: Container(
       padding: const EdgeInsets.all(AppConstants.paddingM),
       decoration: BoxDecoration(
         color: AppColors.surface,
@@ -132,7 +135,7 @@ class DoctorCard extends StatelessWidget {
                 _AvailabilityBadge(isAvailable: doctor.isAvailable),
                 const SizedBox(height: 8),
                 GestureDetector(
-                  onTap: () {},
+                  onTap: doctor.isAvailable ? () => context.push('/book/${doctor.id}') : null,
                   child: Container(
                     padding: const EdgeInsets.symmetric(
                       horizontal: 8,
@@ -175,7 +178,8 @@ class DoctorCard extends StatelessWidget {
           ),
         ],
       ),
-    );
+    ),
+  );
   }
 }
 

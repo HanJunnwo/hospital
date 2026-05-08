@@ -266,7 +266,46 @@ class _LoginViewState extends State<LoginView>
                                   Align(
                                     alignment: Alignment.centerRight,
                                     child: TextButton(
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        showDialog(
+                                          context: context,
+                                          builder: (_) => AlertDialog(
+                                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                                            title: Text('Reset Password', style: AppTextStyles.headlineSmall),
+                                            content: Column(
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: [
+                                                Text('Masukkan email Anda untuk menerima link reset password.', style: AppTextStyles.bodySmall.copyWith(color: AppColors.textSecondary)),
+                                                const SizedBox(height: 16),
+                                                TextField(
+                                                  style: AppTextStyles.bodyMedium,
+                                                  decoration: InputDecoration(
+                                                    hintText: 'Email Anda',
+                                                    prefixIcon: const Icon(Icons.email_outlined, size: 20),
+                                                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                            actions: [
+                                              TextButton(onPressed: () => Navigator.pop(context), child: Text('Batal', style: AppTextStyles.labelLarge.copyWith(color: AppColors.textSecondary))),
+                                              ElevatedButton(
+                                                onPressed: () {
+                                                  Navigator.pop(context);
+                                                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                                    content: Text('Link reset dikirim ke email Anda', style: AppTextStyles.bodySmall.copyWith(color: Colors.white)),
+                                                    backgroundColor: AppColors.success,
+                                                    behavior: SnackBarBehavior.floating,
+                                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                                                    margin: const EdgeInsets.all(16),
+                                                  ));
+                                                },
+                                                child: const Text('Kirim'),
+                                              ),
+                                            ],
+                                          ),
+                                        );
+                                      },
                                       style: TextButton.styleFrom(
                                         padding: EdgeInsets.zero,
                                         minimumSize: const Size(0, 0),

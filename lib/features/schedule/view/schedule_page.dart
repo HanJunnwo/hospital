@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/utils/app_constants.dart';
@@ -17,9 +18,16 @@ class SchedulePage extends StatelessWidget {
         scrolledUnderElevation: 0,
         actions: [
           IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.add_circle_outline_rounded,
-                color: AppColors.primary),
+            onPressed: () {
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                content: const Text('Fitur tambah janji segera hadir'),
+                backgroundColor: AppColors.primary,
+                behavior: SnackBarBehavior.floating,
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                margin: const EdgeInsets.all(16),
+              ));
+            },
+            icon: const Icon(Icons.add_circle_outline_rounded, color: AppColors.primary),
           ),
         ],
         bottom: PreferredSize(
@@ -275,7 +283,24 @@ class _AppointmentCard extends StatelessWidget {
               children: [
                 Expanded(
                   child: OutlinedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      showDialog(
+                        context: context,
+                        builder: (_) => AlertDialog(
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                          title: const Text('Batalkan Janji?'),
+                          content: const Text('Apakah Anda yakin ingin membatalkan janji temu ini?'),
+                          actions: [
+                            TextButton(onPressed: () => Navigator.pop(context), child: const Text('Tidak')),
+                            ElevatedButton(
+                              onPressed: () => Navigator.pop(context),
+                              style: ElevatedButton.styleFrom(backgroundColor: AppColors.error),
+                              child: const Text('Ya, Batalkan', style: TextStyle(color: Colors.white)),
+                            ),
+                          ],
+                        ),
+                      );
+                    },
                     style: OutlinedButton.styleFrom(
                       foregroundColor: AppColors.error,
                       side: const BorderSide(color: AppColors.error),
@@ -295,7 +320,14 @@ class _AppointmentCard extends StatelessWidget {
                 const SizedBox(width: 12),
                 Expanded(
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () => context.push('/appointment-detail', extra: {
+                      'doctorName': doctorName,
+                      'specialty': specialty,
+                      'date': date,
+                      'time': time,
+                      'status': statusLabel,
+                      'initials': initials,
+                    }),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.primary,
                       padding: const EdgeInsets.symmetric(vertical: 10),

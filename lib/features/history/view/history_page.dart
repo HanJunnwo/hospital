@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/utils/app_constants.dart';
@@ -117,7 +118,17 @@ class HistoryPage extends StatelessWidget {
           // History list
           ..._items.map((item) => Padding(
                 padding: const EdgeInsets.only(bottom: 12),
-                child: _HistoryCard(item: item),
+                child: GestureDetector(
+                  onTap: () => context.push('/appointment-detail', extra: {
+                    'doctorName': item.doctorName,
+                    'specialty': item.specialty,
+                    'date': item.date,
+                    'time': '09:00 WIB',
+                    'status': item.isCured ? 'Selesai' : 'Follow-up',
+                    'initials': item.initials,
+                  }),
+                  child: _HistoryCard(item: item),
+                ),
               )),
 
           const SizedBox(height: 16),

@@ -27,7 +27,7 @@ class HomeLoaded extends HomeState {
     required this.categories,
     required this.banners,
     required this.userName,
-    this.selectedCategoryIndex = 0,
+    this.selectedCategoryIndex = -1,
   });
 
   HomeLoaded copyWith({

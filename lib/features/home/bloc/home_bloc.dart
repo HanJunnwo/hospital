@@ -52,7 +52,23 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   ) {
     final current = state;
     if (current is HomeLoaded) {
-      emit(current.copyWith(selectedCategoryIndex: event.index));
+      final newIndex = current.selectedCategoryIndex == event.index ? -1 : event.index;
+      List<DoctorModel> filtered;
+      
+      if (newIndex == -1) {
+        filtered = DoctorData.items;
+      } else {
+        // Find the category keyword, typically the first word (e.g. "Gigi" from "Gigi & Mulut")
+        final categoryKeyword = CategoryData.items[newIndex].name.split(' ').first.toLowerCase();
+        filtered = DoctorData.items.where((doc) {
+          return doc.specialty.toLowerCase().contains(categoryKeyword);
+        }).toList();
+      }
+      
+      emit(current.copyWith(
+        selectedCategoryIndex: newIndex,
+        doctors: filtered,
+      ));
     }
   }
 

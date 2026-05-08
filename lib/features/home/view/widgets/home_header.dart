@@ -11,9 +11,9 @@ class HomeHeader extends StatelessWidget {
 
   String _getGreeting() {
     final hour = DateTime.now().hour;
-    if (hour < 12) return AppStrings.homeGreetingMorning;
-    if (hour < 17) return AppStrings.homeGreetingAfternoon;
-    return AppStrings.homeGreetingEvening;
+    if (hour < 12) return 'Selamat Pagi';
+    if (hour < 17) return 'Selamat Siang';
+    return 'Selamat Malam';
   }
 
   @override
@@ -21,8 +21,8 @@ class HomeHeader extends StatelessWidget {
     return Container(
       padding: EdgeInsets.only(
         top: MediaQuery.of(context).padding.top + 16,
-        left: AppConstants.paddingM,
-        right: AppConstants.paddingM,
+        left: 20, // Menggunakan angka jika AppConstants terkendala
+        right: 20,
         bottom: 24,
       ),
       decoration: const BoxDecoration(

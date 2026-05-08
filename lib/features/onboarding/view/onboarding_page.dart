@@ -106,8 +106,9 @@ class _OnboardingViewState extends State<OnboardingView> {
                       ),
                       if (!isLastPage)
                         TextButton(
-                          onPressed: () =>
-                          context.read<OnboardingBloc>().add(const OnboardingSkipRequested()),
+                          onPressed: () => context
+                              .read<OnboardingBloc>()
+                              .add(const OnboardingSkipRequested()),
                           child: Text(
                             AppStrings.onboardingSkip,
                             style: AppTextStyles.labelLarge.copyWith(
@@ -124,9 +125,9 @@ class _OnboardingViewState extends State<OnboardingView> {
                   child: PageView.builder(
                     controller: _pageController,
                     itemCount: _items.length,
-                  onPageChanged: (page) => context
-                      .read<OnboardingBloc>()
-                      .add(OnboardingPageChanged(page)),
+                    onPageChanged: (page) => context
+                        .read<OnboardingBloc>()
+                        .add(OnboardingPageChanged(page)),
                     itemBuilder: (context, index) {
                       return _OnboardingSlide(item: _items[index]);
                     },

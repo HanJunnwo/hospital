@@ -95,13 +95,13 @@ class _ProfileView extends StatelessWidget {
                   ],
                   const SizedBox(height: 16),
                   // Stats row
-                  Row(
+                  const Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       _StatChip(label: 'Janji', value: '3'),
-                      const SizedBox(width: 24),
+                      SizedBox(width: 24),
                       _StatChip(label: 'Riwayat', value: '12'),
-                      const SizedBox(width: 24),
+                      SizedBox(width: 24),
                       _StatChip(label: 'Ulasan', value: '5'),
                     ],
                   ),
@@ -119,7 +119,7 @@ class _ProfileView extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  _SectionLabel('Akun Saya'),
+                  const _SectionLabel('Akun Saya'),
                   const SizedBox(height: 8),
                   _MenuCard(items: [
                     _MenuItem(
@@ -157,7 +157,7 @@ class _ProfileView extends StatelessWidget {
                   ]),
 
                   const SizedBox(height: 20),
-                  _SectionLabel('Layanan'),
+                  const _SectionLabel('Layanan'),
                   const SizedBox(height: 8),
                   _MenuCard(items: [
                     _MenuItem(
@@ -178,7 +178,7 @@ class _ProfileView extends StatelessWidget {
                   ]),
 
                   const SizedBox(height: 20),
-                  _SectionLabel('Pengaturan'),
+                  const _SectionLabel('Pengaturan'),
                   const SizedBox(height: 8),
                   _MenuCard(items: [
                     _MenuItem(
@@ -286,11 +286,11 @@ class _MenuCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: AppColors.surface,
         borderRadius: BorderRadius.circular(16),
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(
             color: AppColors.cardShadow,
             blurRadius: 12,
-            offset: const Offset(0, 2),
+            offset: Offset(0, 2),
           ),
         ],
       ),
@@ -308,8 +308,8 @@ class _MenuCard extends StatelessWidget {
                       : Radius.zero,
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 16, vertical: 14),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
                   child: Row(
                     children: [
                       Container(
@@ -319,12 +319,13 @@ class _MenuCard extends StatelessWidget {
                           color: AppColors.primary.withOpacity(0.08),
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        child: Icon(item.icon,
-                            color: AppColors.primary, size: 18),
+                        child:
+                            Icon(item.icon, color: AppColors.primary, size: 18),
                       ),
                       const SizedBox(width: 14),
                       Expanded(
-                        child: Text(item.label, style: AppTextStyles.bodyMedium),
+                        child:
+                            Text(item.label, style: AppTextStyles.bodyMedium),
                       ),
                       if (item.value != null)
                         Text(
@@ -332,17 +333,14 @@ class _MenuCard extends StatelessWidget {
                           style: AppTextStyles.labelMedium,
                         ),
                       const SizedBox(width: 8),
-                      Icon(Icons.arrow_forward_ios_rounded,
+                      const Icon(Icons.arrow_forward_ios_rounded,
                           size: 14, color: AppColors.textHint),
                     ],
                   ),
                 ),
               ),
               if (i < items.length - 1)
-                const Divider(
-                    height: 1,
-                    indent: 66,
-                    color: AppColors.divider),
+                const Divider(height: 1, indent: 66, color: AppColors.divider),
             ],
           );
         }),

@@ -43,9 +43,9 @@ class SchedulePage extends StatelessWidget {
           const SizedBox(height: 20),
 
           // Upcoming section
-          _SectionTitle('Mendatang', icon: Icons.schedule_rounded),
+          const _SectionTitle('Mendatang', icon: Icons.schedule_rounded),
           const SizedBox(height: 12),
-          _AppointmentCard(
+          const _AppointmentCard(
             doctorName: 'Dr. Sarah Putri, Sp.JP',
             specialty: 'Kardiologi',
             date: 'Senin, 10 Mar 2026',
@@ -54,7 +54,7 @@ class SchedulePage extends StatelessWidget {
             initials: 'SP',
           ),
           const SizedBox(height: 12),
-          _AppointmentCard(
+          const _AppointmentCard(
             doctorName: 'Dr. Ahmad Rizki, Sp.M',
             specialty: 'Mata',
             date: 'Kamis, 13 Mar 2026',
@@ -65,9 +65,9 @@ class SchedulePage extends StatelessWidget {
           const SizedBox(height: 24),
 
           // Today section
-          _SectionTitle('Hari Ini', icon: Icons.today_rounded),
+          const _SectionTitle('Hari Ini', icon: Icons.today_rounded),
           const SizedBox(height: 12),
-          _AppointmentCard(
+          const _AppointmentCard(
             doctorName: 'Dr. Dewi Lestari, Sp.PD',
             specialty: 'Penyakit Dalam',
             date: 'Senin, 9 Mar 2026',
@@ -185,11 +185,11 @@ class _AppointmentCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: AppColors.surface,
         borderRadius: BorderRadius.circular(16),
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(
             color: AppColors.cardShadow,
             blurRadius: 12,
-            offset: const Offset(0, 4),
+            offset: Offset(0, 4),
           ),
         ],
         border: status == AppointmentStatus.today

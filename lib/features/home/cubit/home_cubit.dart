@@ -13,7 +13,7 @@ class HomeCubit extends Cubit<HomeState> {
       // Simulate network delay (replace with real repository call later)
       await Future.delayed(const Duration(milliseconds: 800));
 
-      emit(HomeLoaded(
+      emit(const HomeLoaded(
         doctors: DoctorData.items,
         categories: CategoryData.items,
         banners: BannerData.items,

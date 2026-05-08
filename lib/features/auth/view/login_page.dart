@@ -86,7 +86,8 @@ class _LoginViewState extends State<LoginView>
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12),
                 ),
-                margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                margin:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
               ),
             );
           }
@@ -114,12 +115,14 @@ class _LoginViewState extends State<LoginView>
                       Positioned(
                         top: -50,
                         right: -50,
-                        child: _decorCircle(200, Colors.white.withOpacity(0.07)),
+                        child:
+                            _decorCircle(200, Colors.white.withOpacity(0.07)),
                       ),
                       Positioned(
                         bottom: 20,
                         left: -40,
-                        child: _decorCircle(140, Colors.white.withOpacity(0.05)),
+                        child:
+                            _decorCircle(140, Colors.white.withOpacity(0.05)),
                       ),
                     ],
                   ),
@@ -193,11 +196,11 @@ class _LoginViewState extends State<LoginView>
                             decoration: BoxDecoration(
                               color: AppColors.surface,
                               borderRadius: BorderRadius.circular(28),
-                              boxShadow: [
+                              boxShadow: const [
                                 BoxShadow(
                                   color: AppColors.cardShadow,
                                   blurRadius: 32,
-                                  offset: const Offset(0, 8),
+                                  offset: Offset(0, 8),
                                 ),
                               ],
                             ),
@@ -361,8 +364,7 @@ class _LoginViewState extends State<LoginView>
                                                     color: AppColors.primary
                                                         .withOpacity(0.35),
                                                     blurRadius: 16,
-                                                    offset:
-                                                        const Offset(0, 6),
+                                                    offset: const Offset(0, 6),
                                                   ),
                                                 ],
                                               ),

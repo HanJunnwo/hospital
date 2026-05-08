@@ -198,43 +198,51 @@ class AppointmentDetailPage extends StatelessWidget {
       context: context,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
-      builder: (context) => Container(
-        padding: const EdgeInsets.all(24),
-        decoration: const BoxDecoration(
-          color: AppColors.background,
-          borderRadius: BorderRadius.vertical(top: Radius.circular(28)),
-        ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Center(
-              child: Container(width: 48, height: 6, decoration: BoxDecoration(color: Colors.grey[300], borderRadius: BorderRadius.circular(10))),
-            ),
-            const SizedBox(height: 24),
-            Text('Reschedule Janji Temu', style: AppTextStyles.headlineMedium),
-            const SizedBox(height: 8),
-            Text('Pilih tanggal dan waktu baru untuk janji temu Anda.', style: AppTextStyles.bodyMedium.copyWith(color: AppColors.textSecondary)),
-            const SizedBox(height: 24),
-            Text('Pilih Tanggal Baru', style: AppTextStyles.titleMedium),
-            const SizedBox(height: 12),
-            SizedBox(
-              height: 80,
-              child: ListView.separated(
-                scrollDirection: Axis.horizontal,
-                itemCount: 7,
-                separatorBuilder: (_, __) => const SizedBox(width: 12),
-                itemBuilder: (context, index) {
-                  final isSelected = index == 1;
-                  return Container(
-                    width: 70,
-                    decoration: BoxDecoration(
-                      color: isSelected ? AppColors.primary : AppColors.surface,
-                      borderRadius: BorderRadius.circular(16),
-                      border: Border.all(color: isSelected ? AppColors.primary : AppColors.divider),
-                      boxShadow: isSelected ? [BoxShadow(color: AppColors.primary.withOpacity(0.3), blurRadius: 8, offset: const Offset(0, 4))] : [],
-                    ),
-                    child: Column(
+      builder: (context) {
+        int selectedDateIndex = 1;
+        String selectedTime = '10:30 WIB';
+        
+        return StatefulBuilder(
+          builder: (context, setState) {
+            return Container(
+              padding: const EdgeInsets.all(24),
+              decoration: const BoxDecoration(
+                color: AppColors.background,
+                borderRadius: BorderRadius.vertical(top: Radius.circular(28)),
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Center(
+                    child: Container(width: 48, height: 6, decoration: BoxDecoration(color: Colors.grey[300], borderRadius: BorderRadius.circular(10))),
+                  ),
+                  const SizedBox(height: 24),
+                  Text('Reschedule Janji Temu', style: AppTextStyles.headlineMedium),
+                  const SizedBox(height: 8),
+                  Text('Pilih tanggal dan waktu baru untuk janji temu Anda.', style: AppTextStyles.bodyMedium.copyWith(color: AppColors.textSecondary)),
+                  const SizedBox(height: 24),
+                  Text('Pilih Tanggal Baru', style: AppTextStyles.titleMedium),
+                  const SizedBox(height: 12),
+                  SizedBox(
+                    height: 80,
+                    child: ListView.separated(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: 7,
+                      separatorBuilder: (_, __) => const SizedBox(width: 12),
+                      itemBuilder: (context, index) {
+                        final isSelected = index == selectedDateIndex;
+                        return GestureDetector(
+                          onTap: () => setState(() => selectedDateIndex = index),
+                          child: Container(
+                            width: 70,
+                            decoration: BoxDecoration(
+                              color: isSelected ? AppColors.primary : AppColors.surface,
+                              borderRadius: BorderRadius.circular(16),
+                              border: Border.all(color: isSelected ? AppColors.primary : AppColors.divider),
+                              boxShadow: isSelected ? [BoxShadow(color: AppColors.primary.withOpacity(0.3), blurRadius: 8, offset: const Offset(0, 4))] : [],
+                            ),
+                            child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text('Mar', style: AppTextStyles.labelSmall.copyWith(color: isSelected ? Colors.white70 : AppColors.textSecondary)),
@@ -242,51 +250,58 @@ class AppointmentDetailPage extends StatelessWidget {
                         Text('${11 + index}', style: AppTextStyles.titleLarge.copyWith(color: isSelected ? Colors.white : AppColors.textPrimary)),
                       ],
                     ),
-                  );
-                },
-              ),
-            ),
-            const SizedBox(height: 24),
-            Text('Pilih Waktu Baru', style: AppTextStyles.titleMedium),
-            const SizedBox(height: 12),
-            Wrap(
-              spacing: 12,
-              runSpacing: 12,
-              children: ['09:00 WIB', '10:30 WIB', '13:00 WIB', '15:30 WIB'].map((time) {
-                final isSelected = time == '10:30 WIB';
-                return Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                  decoration: BoxDecoration(
-                    color: isSelected ? AppColors.primary.withOpacity(0.1) : AppColors.surface,
-                    borderRadius: BorderRadius.circular(12),
-                    border: Border.all(color: isSelected ? AppColors.primary : AppColors.divider),
+                          ),
+                        );
+                      },
+                    ),
                   ),
-                  child: Text(time, style: AppTextStyles.labelMedium.copyWith(color: isSelected ? AppColors.primary : AppColors.textPrimary)),
-                );
-              }).toList(),
-            ),
-            const SizedBox(height: 32),
-            GestureDetector(
-              onTap: () {
-                Navigator.pop(context);
-                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                  content: Text('Jadwal berhasil diperbarui ke 12 Mar, 10:30 WIB', style: AppTextStyles.bodyMedium.copyWith(color: Colors.white)),
-                  backgroundColor: AppColors.success,
-                  behavior: SnackBarBehavior.floating,
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                ));
-              },
-              child: Container(
-                width: double.infinity,
-                padding: const EdgeInsets.symmetric(vertical: 16),
-                decoration: BoxDecoration(gradient: AppColors.primaryGradient, borderRadius: BorderRadius.circular(16)),
-                child: Center(child: Text('Konfirmasi Jadwal Baru', style: AppTextStyles.titleMedium.copyWith(color: Colors.white))),
+                  const SizedBox(height: 24),
+                  Text('Pilih Waktu Baru', style: AppTextStyles.titleMedium),
+                  const SizedBox(height: 12),
+                  Wrap(
+                    spacing: 12,
+                    runSpacing: 12,
+                    children: ['09:00 WIB', '10:30 WIB', '13:00 WIB', '15:30 WIB'].map((time) {
+                      final isSelected = time == selectedTime;
+                      return GestureDetector(
+                        onTap: () => setState(() => selectedTime = time),
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                          decoration: BoxDecoration(
+                            color: isSelected ? AppColors.primary.withOpacity(0.1) : AppColors.surface,
+                            borderRadius: BorderRadius.circular(12),
+                            border: Border.all(color: isSelected ? AppColors.primary : AppColors.divider),
+                          ),
+                          child: Text(time, style: AppTextStyles.labelMedium.copyWith(color: isSelected ? AppColors.primary : AppColors.textPrimary)),
+                        ),
+                      );
+                    }).toList(),
+                  ),
+                  const SizedBox(height: 32),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pop(context);
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        content: Text('Jadwal berhasil diperbarui ke ${11 + selectedDateIndex} Mar, $selectedTime', style: AppTextStyles.bodyMedium.copyWith(color: Colors.white)),
+                        backgroundColor: AppColors.success,
+                        behavior: SnackBarBehavior.floating,
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                      ));
+                    },
+                    child: Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.symmetric(vertical: 16),
+                      decoration: BoxDecoration(gradient: AppColors.primaryGradient, borderRadius: BorderRadius.circular(16)),
+                      child: Center(child: Text('Konfirmasi Jadwal Baru', style: AppTextStyles.titleMedium.copyWith(color: Colors.white))),
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                ],
               ),
-            ),
-            const SizedBox(height: 16),
-          ],
-        ),
-      ),
+            );
+          },
+        );
+      },
     );
   }
 }

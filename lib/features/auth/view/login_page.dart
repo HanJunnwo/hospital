@@ -147,8 +147,7 @@ class _LoginViewState extends State<LoginView>
                             child: Column(
                               children: [
                                 Container(
-                                  width: 80,
-                                  height: 80,
+                                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                                   decoration: BoxDecoration(
                                     color: Colors.white,
                                     borderRadius: BorderRadius.circular(24),
@@ -160,17 +159,39 @@ class _LoginViewState extends State<LoginView>
                                       ),
                                     ],
                                   ),
-                                  child: const Center(
-                                    child: Icon(
-                                      Icons.local_hospital_rounded,
-                                      size: 44,
-                                      color: AppColors.primary,
-                                    ),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Image.asset(
+                                        'assets/images/rsu_logo.png',
+                                        height: 48,
+                                        fit: BoxFit.contain,
+                                      ),
+                                      const SizedBox(width: 12),
+                                      Container(
+                                        height: 36,
+                                        width: 1.5,
+                                        color: AppColors.divider,
+                                      ),
+                                      const SizedBox(width: 12),
+                                      Container(
+                                        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                                        decoration: BoxDecoration(
+                                          color: const Color(0xFF1E3A8A),
+                                          borderRadius: BorderRadius.circular(10),
+                                        ),
+                                        child: Image.asset(
+                                          'assets/images/aska_logo.png',
+                                          height: 28,
+                                          fit: BoxFit.contain,
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
                                 const SizedBox(height: 16),
                                 Text(
-                                  'OmniHealth',
+                                  'A-MEDIX',
                                   style: AppTextStyles.headlineLarge.copyWith(
                                     color: Colors.white,
                                     fontWeight: FontWeight.w700,
@@ -179,7 +200,7 @@ class _LoginViewState extends State<LoginView>
                                 ),
                                 const SizedBox(height: 4),
                                 Text(
-                                  'Kesehatan Ada di Genggaman',
+                                  'ASKA Medical Digital eXchange',
                                   style: AppTextStyles.bodySmall.copyWith(
                                     color: Colors.white.withOpacity(0.85),
                                   ),

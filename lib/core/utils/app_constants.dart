@@ -1,8 +1,8 @@
 class AppConstants {
   AppConstants._();
 
-  static const String appName = 'OmniHealth';
-  static const String appTagline = 'Kesehatan Ada di Genggaman';
+  static const String appName = 'A-MEDIX';
+  static const String appTagline = 'ASKA Medical Digital eXchange';
 
   // SharedPreferences Keys
   static const String keyOnboardingDone = 'onboarding_done';

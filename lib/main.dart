@@ -40,7 +40,7 @@ class HospitalApp extends StatelessWidget {
     return BlocProvider(
       create: (_) => AuthBloc(authRepository: AuthRepository()),
       child: MaterialApp.router(
-        title: 'OmniHealth',
+        title: 'A-MEDIX',
         debugShowCheckedModeBanner: false,
         theme: AppTheme.lightTheme,
         routerConfig: router,

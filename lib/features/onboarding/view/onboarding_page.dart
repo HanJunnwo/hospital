@@ -82,22 +82,33 @@ class _OnboardingViewState extends State<OnboardingView> {
                       // Logo
                       Row(
                         children: [
-                          Container(
-                            width: 36,
-                            height: 36,
-                            decoration: BoxDecoration(
-                              color: AppColors.primary,
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: const Icon(
-                              Icons.local_hospital_rounded,
-                              color: Colors.white,
-                              size: 20,
-                            ),
+                          Image.asset(
+                            'assets/images/rsu_logo.png',
+                            height: 32,
+                            fit: BoxFit.contain,
                           ),
                           const SizedBox(width: 8),
+                          Container(
+                            height: 24,
+                            width: 1.5,
+                            color: AppColors.divider,
+                          ),
+                          const SizedBox(width: 8),
+                          Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
+                            decoration: BoxDecoration(
+                              color: const Color(0xFF1E3A8A),
+                              borderRadius: BorderRadius.circular(6),
+                            ),
+                            child: Image.asset(
+                              'assets/images/aska_logo.png',
+                              height: 18,
+                              fit: BoxFit.contain,
+                            ),
+                          ),
+                          const SizedBox(width: 12),
                           Text(
-                            'OmniHealth',
+                            'A-MEDIX',
                             style: AppTextStyles.titleMedium.copyWith(
                               color: AppColors.primary,
                             ),

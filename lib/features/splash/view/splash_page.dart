@@ -173,7 +173,7 @@ class _SplashViewState extends State<SplashView>
                         child: Column(
                           children: [
                             Text(
-                              'OmniHealth',
+                              'A-MEDIX',
                               style: AppTextStyles.displayMedium.copyWith(
                                 color: Colors.white,
                                 fontWeight: FontWeight.w700,
@@ -182,7 +182,7 @@ class _SplashViewState extends State<SplashView>
                             ),
                             const SizedBox(height: 8),
                             Text(
-                              'Kesehatan Ada di Genggaman',
+                              'ASKA Medical Digital eXchange',
                               style: AppTextStyles.bodyMedium.copyWith(
                                 color: Colors.white.withOpacity(0.85),
                                 letterSpacing: 0.5,
@@ -235,8 +235,7 @@ class _SplashViewState extends State<SplashView>
 
   Widget _buildLogo() {
     return Container(
-      width: 120,
-      height: 120,
+      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(32),
@@ -253,12 +252,34 @@ class _SplashViewState extends State<SplashView>
           ),
         ],
       ),
-      child: const Center(
-        child: Icon(
-          Icons.local_hospital_rounded,
-          size: 64,
-          color: AppColors.primary,
-        ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Image.asset(
+            'assets/images/rsu_logo.png',
+            height: 64,
+            fit: BoxFit.contain,
+          ),
+          const SizedBox(width: 16),
+          Container(
+            height: 48,
+            width: 2,
+            color: AppColors.divider,
+          ),
+          const SizedBox(width: 16),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+            decoration: BoxDecoration(
+              color: const Color(0xFF1E3A8A),
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Image.asset(
+              'assets/images/aska_logo.png',
+              height: 38,
+              fit: BoxFit.contain,
+            ),
+          ),
+        ],
       ),
     );
   }

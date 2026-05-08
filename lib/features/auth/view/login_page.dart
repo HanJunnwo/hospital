@@ -412,7 +412,15 @@ class _LoginViewState extends State<LoginView>
                                   _SocialButton(
                                     icon: Icons.g_mobiledata_rounded,
                                     label: 'Lanjutkan dengan Google',
-                                    onTap: () {},
+                                    onTap: () {
+                                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                        content: Text('Login dengan Google sedang diproses...', style: AppTextStyles.bodySmall.copyWith(color: Colors.white)),
+                                        backgroundColor: AppColors.success,
+                                        behavior: SnackBarBehavior.floating,
+                                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                                        margin: const EdgeInsets.all(16),
+                                      ));
+                                    },
                                   ),
 
                                   const SizedBox(height: 28),

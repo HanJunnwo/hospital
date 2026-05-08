@@ -92,7 +92,15 @@ class _DoctorDetailPageState extends State<DoctorDetailPage> {
           child: IconButton(
             icon: const Icon(Icons.favorite_border_rounded,
                 color: Colors.white, size: 20),
-            onPressed: () {},
+            onPressed: () {
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                content: Text('Ditambahkan ke Favorit', style: AppTextStyles.bodySmall.copyWith(color: Colors.white)),
+                backgroundColor: AppColors.success,
+                behavior: SnackBarBehavior.floating,
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                margin: const EdgeInsets.all(16),
+              ));
+            },
           ),
         ),
       ],
@@ -426,7 +434,15 @@ class _DoctorDetailPageState extends State<DoctorDetailPage> {
           children: [
             Text('Ulasan Pasien', style: AppTextStyles.titleLarge),
             TextButton(
-              onPressed: () {},
+              onPressed: () {
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  content: Text('Semua ulasan akan ditampilkan di sini', style: AppTextStyles.bodySmall.copyWith(color: Colors.white)),
+                  backgroundColor: AppColors.primary,
+                  behavior: SnackBarBehavior.floating,
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                  margin: const EdgeInsets.all(16),
+                ));
+              },
               child: Text('Lihat Semua',
                   style: AppTextStyles.labelMedium
                       .copyWith(color: AppColors.primary)),

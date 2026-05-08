@@ -141,7 +141,15 @@ class AppointmentDetailPage extends StatelessWidget {
                 const SizedBox(width: 12),
                 Expanded(
                   child: GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        content: Text('Fitur Reschedule segera hadir', style: AppTextStyles.bodySmall.copyWith(color: Colors.white)),
+                        backgroundColor: AppColors.primary,
+                        behavior: SnackBarBehavior.floating,
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                        margin: const EdgeInsets.all(16),
+                      ));
+                    },
                     child: Container(
                       height: 50,
                       decoration: BoxDecoration(

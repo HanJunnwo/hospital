@@ -131,12 +131,28 @@ class _ProfileView extends StatelessWidget {
                       icon: Icons.phone_outlined,
                       label: 'Nomor Telepon',
                       value: '+62 xxx xxxx xxxx',
-                      onTap: () {},
+                      onTap: () {
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          content: Text('Ubah nomor telepon di Edit Profil', style: AppTextStyles.bodySmall.copyWith(color: Colors.white)),
+                          backgroundColor: AppColors.primary,
+                          behavior: SnackBarBehavior.floating,
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                          margin: const EdgeInsets.all(16),
+                        ));
+                      },
                     ),
                     _MenuItem(
                       icon: Icons.location_on_outlined,
                       label: 'Alamat',
-                      onTap: () {},
+                      onTap: () {
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          content: Text('Ubah alamat di Edit Profil', style: AppTextStyles.bodySmall.copyWith(color: Colors.white)),
+                          backgroundColor: AppColors.primary,
+                          behavior: SnackBarBehavior.floating,
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                          margin: const EdgeInsets.all(16),
+                        ));
+                      },
                     ),
                   ]),
 
@@ -157,7 +173,7 @@ class _ProfileView extends StatelessWidget {
                     _MenuItem(
                       icon: Icons.favorite_outline_rounded,
                       label: 'Dokter Favorit',
-                      onTap: () {},
+                      onTap: () => context.push('/favorites'),
                     ),
                   ]),
 
@@ -168,17 +184,17 @@ class _ProfileView extends StatelessWidget {
                     _MenuItem(
                       icon: Icons.notifications_outlined,
                       label: 'Notifikasi',
-                      onTap: () {},
+                      onTap: () => context.push('/notification-settings'),
                     ),
                     _MenuItem(
                       icon: Icons.lock_outline_rounded,
                       label: 'Keamanan',
-                      onTap: () {},
+                      onTap: () => context.push('/security-settings'),
                     ),
                     _MenuItem(
                       icon: Icons.help_outline_rounded,
                       label: 'Bantuan',
-                      onTap: () {},
+                      onTap: () => context.push('/help-center'),
                     ),
                   ]),
 

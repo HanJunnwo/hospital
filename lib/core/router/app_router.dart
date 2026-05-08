@@ -14,6 +14,10 @@ import '../../features/doctor/view/doctor_detail_page.dart';
 import '../../features/appointment/view/book_appointment_page.dart';
 import '../../features/appointment/view/appointment_detail_page.dart';
 import '../../features/profile/view/edit_profile_page.dart';
+import '../../features/favorites/view/favorites_page.dart';
+import '../../features/settings/view/notification_settings_page.dart';
+import '../../features/settings/view/security_settings_page.dart';
+import '../../features/help/view/help_center_page.dart';
 
 class AppRoutes {
   AppRoutes._();
@@ -33,6 +37,10 @@ class AppRoutes {
   static const String bookAppointment = '/book/:doctorId';
   static const String appointmentDetail = '/appointment-detail';
   static const String editProfile = '/edit-profile';
+  static const String favorites = '/favorites';
+  static const String notificationSettings = '/notification-settings';
+  static const String securitySettings = '/security-settings';
+  static const String helpCenter = '/help-center';
 }
 
 class AppRouter {
@@ -108,6 +116,26 @@ class AppRouter {
           path: AppRoutes.editProfile,
           name: 'editProfile',
           builder: (context, state) => const EditProfilePage(),
+        ),
+        GoRoute(
+          path: AppRoutes.favorites,
+          name: 'favorites',
+          builder: (context, state) => const FavoritesPage(),
+        ),
+        GoRoute(
+          path: AppRoutes.notificationSettings,
+          name: 'notificationSettings',
+          builder: (context, state) => const NotificationSettingsPage(),
+        ),
+        GoRoute(
+          path: AppRoutes.securitySettings,
+          name: 'securitySettings',
+          builder: (context, state) => const SecuritySettingsPage(),
+        ),
+        GoRoute(
+          path: AppRoutes.helpCenter,
+          name: 'helpCenter',
+          builder: (context, state) => const HelpCenterPage(),
         ),
         // Shell route with bottom nav
         ShellRoute(

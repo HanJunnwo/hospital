@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-<<<<<<< HEAD
 import 'package:go_router/go_router.dart';
 import '../../../../core/theme/app_colors.dart';
-=======
->>>>>>> afdc1fe696b2b25bf6e287effd5bcd299f9c03da
 import '../../../../core/theme/app_text_styles.dart';
 import '../../../../core/utils/app_constants.dart';
 
@@ -137,30 +134,13 @@ class HomeHeader extends StatelessWidget {
                   width: 1.5,
                 ),
               ),
-<<<<<<< HEAD
               child: Center(
                 child: Text(
-                  userName.isNotEmpty
-                      ? userName[0].toUpperCase()
-                      : 'U',
+                  userName.isNotEmpty ? userName[0].toUpperCase() : 'U',
                   style: AppTextStyles.titleMedium.copyWith(
                     color: Colors.white,
                     fontWeight: FontWeight.w700,
                   ),
-=======
-              borderRadius: BorderRadius.circular(12),
-              border: Border.all(
-                color: Colors.white.withOpacity(0.3),
-                width: 1.5,
-              ),
-            ),
-            child: Center(
-              child: Text(
-                userName.isNotEmpty ? userName[0].toUpperCase() : 'U',
-                style: AppTextStyles.titleMedium.copyWith(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w700,
->>>>>>> afdc1fe696b2b25bf6e287effd5bcd299f9c03da
                 ),
               ),
             ),

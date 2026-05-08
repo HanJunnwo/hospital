@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/utils/app_constants.dart';
@@ -50,6 +51,21 @@ class _MainScaffoldState extends State<MainScaffold> {
   ];
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final location = GoRouterState.of(context).uri.toString();
+    if (location.startsWith('/home')) {
+      _currentIndex = 0;
+    } else if (location.startsWith('/schedule')) {
+      _currentIndex = 1;
+    } else if (location.startsWith('/history')) {
+      _currentIndex = 2;
+    } else if (location.startsWith('/profile')) {
+      _currentIndex = 3;
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: IndexedStack(
@@ -59,7 +75,12 @@ class _MainScaffoldState extends State<MainScaffold> {
       bottomNavigationBar: _AppBottomNavBar(
         items: _navItems,
         currentIndex: _currentIndex,
-        onTap: (index) => setState(() => _currentIndex = index),
+        onTap: (index) {
+          if (index == 0) context.go('/home');
+          else if (index == 1) context.go('/schedule');
+          else if (index == 2) context.go('/history');
+          else if (index == 3) context.go('/profile');
+        },
       ),
     );
   }

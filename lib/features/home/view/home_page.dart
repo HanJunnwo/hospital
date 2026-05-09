@@ -10,6 +10,7 @@ import 'widgets/search_bar_widget.dart';
 import 'widgets/promo_banner_widget.dart';
 import 'widgets/category_section.dart';
 import 'widgets/doctor_card.dart';
+import 'widgets/doctor_trend_widget.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -70,6 +71,13 @@ class HomeView extends StatelessWidget {
                   // Promo Banner
                   SliverToBoxAdapter(
                     child: PromoBannerWidget(banners: state.banners),
+                  ),
+
+                  const SliverToBoxAdapter(child: SizedBox(height: 24)),
+
+                  // Doctor Trend Chart
+                  const SliverToBoxAdapter(
+                    child: DoctorTrendWidget(),
                   ),
 
                   const SliverToBoxAdapter(child: SizedBox(height: 24)),

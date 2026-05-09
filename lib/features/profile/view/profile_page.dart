@@ -130,29 +130,14 @@ class _ProfileView extends StatelessWidget {
                     _MenuItem(
                       icon: Icons.phone_outlined,
                       label: 'Nomor Telepon',
-                      value: '+62 xxx xxxx xxxx',
-                      onTap: () {
-                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                          content: Text('Ubah nomor telepon di Edit Profil', style: AppTextStyles.bodySmall.copyWith(color: Colors.white)),
-                          backgroundColor: AppColors.primary,
-                          behavior: SnackBarBehavior.floating,
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                          margin: const EdgeInsets.all(16),
-                        ));
-                      },
+                      value: '+62 812 3456 7890',
+                      onTap: () => context.push('/edit-profile'),
                     ),
                     _MenuItem(
                       icon: Icons.location_on_outlined,
                       label: 'Alamat',
-                      onTap: () {
-                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                          content: Text('Ubah alamat di Edit Profil', style: AppTextStyles.bodySmall.copyWith(color: Colors.white)),
-                          backgroundColor: AppColors.primary,
-                          behavior: SnackBarBehavior.floating,
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                          margin: const EdgeInsets.all(16),
-                        ));
-                      },
+                      value: 'Medan, Sumatera Utara',
+                      onTap: () => context.push('/edit-profile'),
                     ),
                   ]),
 

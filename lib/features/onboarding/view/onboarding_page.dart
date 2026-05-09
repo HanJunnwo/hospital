@@ -43,183 +43,185 @@ class _OnboardingViewState extends State<OnboardingView> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<OnboardingBloc, OnboardingState>(
+    return BlocListener<OnboardingBloc, OnboardingState>(
       listenWhen: (prev, curr) => prev.isDone != curr.isDone,
       listener: (context, state) {
         if (state.isDone) {
           context.go(AppRoutes.login);
         }
       },
-      builder: (context, state) {
-        // Sync page controller with cubit
-        if (_pageController.hasClients &&
-            _pageController.page?.round() != state.currentPage) {
-          _pageController.animateToPage(
-            state.currentPage,
-            duration:
-                const Duration(milliseconds: AppConstants.animationNormalMs),
-            curve: Curves.easeInOut,
-          );
-        }
+      child: BlocBuilder<OnboardingBloc, OnboardingState>(
+        builder: (context, state) {
+          // Sync page controller with cubit
+          if (_pageController.hasClients &&
+              _pageController.page?.round() != state.currentPage) {
+            _pageController.animateToPage(
+              state.currentPage,
+              duration:
+                  const Duration(milliseconds: AppConstants.animationNormalMs),
+              curve: Curves.easeInOut,
+            );
+          }
 
-        final currentItem = _items[state.currentPage];
-        final isLastPage = state.currentPage == _items.length - 1;
+          final currentItem = _items[state.currentPage];
+          final isLastPage = state.currentPage == _items.length - 1;
 
-        return Scaffold(
-          backgroundColor: AppColors.background,
-          body: SafeArea(
-            child: Column(
-              children: [
-                // Skip button
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: AppConstants.paddingM,
-                    vertical: AppConstants.paddingS,
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      // Logo
-                      Row(
-                        children: [
-                          Image.asset(
-                            'assets/images/rsu_logo.png',
-                            height: 32,
-                            fit: BoxFit.contain,
-                          ),
-                          const SizedBox(width: 8),
-                          Container(
-                            height: 24,
-                            width: 1.5,
-                            color: AppColors.divider,
-                          ),
-                          const SizedBox(width: 8),
-                          Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
-                            decoration: BoxDecoration(
-                              color: const Color(0xFF1E3A8A),
-                              borderRadius: BorderRadius.circular(6),
-                            ),
-                            child: Image.asset(
-                              'assets/images/aska_logo.png',
-                              height: 18,
+          return Scaffold(
+            backgroundColor: AppColors.background,
+            body: SafeArea(
+              child: Column(
+                children: [
+                  // Skip button
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: AppConstants.paddingM,
+                      vertical: AppConstants.paddingS,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        // Logo
+                        Row(
+                          children: [
+                            Image.asset(
+                              'assets/images/rsu_logo.png',
+                              height: 32,
                               fit: BoxFit.contain,
                             ),
-                          ),
-                          const SizedBox(width: 12),
-                          Text(
-                            'A-MEDIX',
-                            style: AppTextStyles.titleMedium.copyWith(
-                              color: AppColors.primary,
+                            const SizedBox(width: 8),
+                            Container(
+                              height: 24,
+                              width: 1.5,
+                              color: AppColors.divider,
                             ),
-                          ),
-                        ],
-                      ),
-                      if (!isLastPage)
-                        TextButton(
-                          onPressed: () => context
-                              .read<OnboardingBloc>()
-                              .add(const OnboardingSkipRequested()),
-                          child: Text(
-                            AppStrings.onboardingSkip,
-                            style: AppTextStyles.labelLarge.copyWith(
-                              color: AppColors.textSecondary,
-                            ),
-                          ),
-                        ),
-                    ],
-                  ),
-                ),
-
-                // PageView
-                Expanded(
-                  child: PageView.builder(
-                    controller: _pageController,
-                    itemCount: _items.length,
-                    onPageChanged: (page) => context
-                        .read<OnboardingBloc>()
-                        .add(OnboardingPageChanged(page)),
-                    itemBuilder: (context, index) {
-                      return _OnboardingSlide(item: _items[index]);
-                    },
-                  ),
-                ),
-
-                // Bottom section
-                Padding(
-                  padding: const EdgeInsets.all(AppConstants.paddingL),
-                  child: Column(
-                    children: [
-                      // Page indicator
-                      SmoothPageIndicator(
-                        controller: _pageController,
-                        count: _items.length,
-                        effect: ExpandingDotsEffect(
-                          dotHeight: 8,
-                          dotWidth: 8,
-                          expansionFactor: 4,
-                          spacing: 6,
-                          activeDotColor: currentItem.primaryColor,
-                          dotColor: currentItem.primaryColor.withOpacity(0.25),
-                        ),
-                      ),
-                      const SizedBox(height: 32),
-
-                      // Action buttons
-                      Row(
-                        children: [
-                          if (state.currentPage > 0) ...[
-                            Expanded(
-                              child: OutlinedButton(
-                                style: OutlinedButton.styleFrom(
-                                  foregroundColor: currentItem.primaryColor,
-                                  side: BorderSide(
-                                    color: currentItem.primaryColor,
-                                    width: 1.5,
-                                  ),
-                                  minimumSize: const Size(0, 52),
-                                  padding: EdgeInsets.zero,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(14),
-                                  ),
-                                ),
-                                onPressed: () => context
-                                    .read<OnboardingBloc>()
-                                    .add(const OnboardingPreviousRequested()),
-                                child: Text(
-                                  'Kembali',
-                                  maxLines: 1,
-                                  style: AppTextStyles.titleMedium.copyWith(
-                                    color: currentItem.primaryColor,
-                                  ),
-                                ),
+                            const SizedBox(width: 8),
+                            Container(
+                              padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
+                              decoration: BoxDecoration(
+                                color: const Color(0xFF1E3A8A),
+                                borderRadius: BorderRadius.circular(6),
+                              ),
+                              child: Image.asset(
+                                'assets/images/aska_logo.png',
+                                height: 18,
+                                fit: BoxFit.contain,
                               ),
                             ),
                             const SizedBox(width: 12),
+                            Text(
+                              'A-MEDIX',
+                              style: AppTextStyles.titleMedium.copyWith(
+                                color: AppColors.primary,
+                              ),
+                            ),
                           ],
-                          Expanded(
-                            flex: 2,
-                            child: _GradientButton(
-                              primaryColor: currentItem.primaryColor,
-                              accentColor: currentItem.accentColor,
-                              label: isLastPage
-                                  ? AppStrings.onboardingStart
-                                  : AppStrings.onboardingNext,
-                              onPressed: () => context
-                                  .read<OnboardingBloc>()
-                                  .add(OnboardingNextRequested(_items.length)),
+                        ),
+                        if (!isLastPage)
+                          TextButton(
+                            onPressed: () => context
+                                .read<OnboardingBloc>()
+                                .add(const OnboardingSkipRequested()),
+                            child: Text(
+                              AppStrings.onboardingSkip,
+                              style: AppTextStyles.labelLarge.copyWith(
+                                color: AppColors.textSecondary,
+                              ),
                             ),
                           ),
-                        ],
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-              ],
+
+                  // PageView
+                  Expanded(
+                    child: PageView.builder(
+                      controller: _pageController,
+                      itemCount: _items.length,
+                      onPageChanged: (page) => context
+                          .read<OnboardingBloc>()
+                          .add(OnboardingPageChanged(page)),
+                      itemBuilder: (context, index) {
+                        return _OnboardingSlide(item: _items[index]);
+                      },
+                    ),
+                  ),
+
+                  // Bottom section
+                  Padding(
+                    padding: const EdgeInsets.all(AppConstants.paddingL),
+                    child: Column(
+                      children: [
+                        // Page indicator
+                        SmoothPageIndicator(
+                          controller: _pageController,
+                          count: _items.length,
+                          effect: ExpandingDotsEffect(
+                            dotHeight: 8,
+                            dotWidth: 8,
+                            expansionFactor: 4,
+                            spacing: 6,
+                            activeDotColor: currentItem.primaryColor,
+                            dotColor: currentItem.primaryColor.withOpacity(0.25),
+                          ),
+                        ),
+                        const SizedBox(height: 32),
+
+                        // Action buttons
+                        Row(
+                          children: [
+                            if (state.currentPage > 0) ...[
+                              Expanded(
+                                child: OutlinedButton(
+                                  style: OutlinedButton.styleFrom(
+                                    foregroundColor: currentItem.primaryColor,
+                                    side: BorderSide(
+                                      color: currentItem.primaryColor,
+                                      width: 1.5,
+                                    ),
+                                    minimumSize: const Size(0, 52),
+                                    padding: EdgeInsets.zero,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(14),
+                                    ),
+                                  ),
+                                  onPressed: () => context
+                                      .read<OnboardingBloc>()
+                                      .add(const OnboardingPreviousRequested()),
+                                  child: Text(
+                                    'Kembali',
+                                    maxLines: 1,
+                                    style: AppTextStyles.titleMedium.copyWith(
+                                      color: currentItem.primaryColor,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(width: 12),
+                            ],
+                            Expanded(
+                              flex: 2,
+                              child: _GradientButton(
+                                primaryColor: currentItem.primaryColor,
+                                accentColor: currentItem.accentColor,
+                                label: isLastPage
+                                    ? AppStrings.onboardingStart
+                                    : AppStrings.onboardingNext,
+                                onPressed: () => context
+                                    .read<OnboardingBloc>()
+                                    .add(OnboardingNextRequested(_items.length)),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 }

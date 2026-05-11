@@ -1,5 +1,5 @@
-name: hospital
-description: "Aplikasi Rumah Sakit - Hospital App"
+name: a_medix
+description: "A-MEDIX - Aplikasi Rumah Sakit"
 publish_to: 'none'
 
 version: 1.0.0+1

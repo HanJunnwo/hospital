@@ -249,27 +249,27 @@ class _DoctorTrendWidgetState extends State<DoctorTrendWidget>
 
           // ── Highlight Stats ────────────────────────────────────────────
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
+            padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Row(
               children: [
                 _StatBadge(
-                  label: 'Total Minggu Ini',
+                  label: 'Total/Mgg',
                   value: '$totalBookings',
                   unit: 'pasien',
                   color: trend.color,
                   icon: Icons.people_alt_rounded,
                 ),
-                const SizedBox(width: 12),
+                const SizedBox(width: 8),
                 _StatBadge(
-                  label: 'Hari Puncak',
+                  label: 'Puncak',
                   value: _days[peakDayIndex],
                   unit: '${maxVal.toInt()} pasien',
                   color: trend.color,
                   icon: Icons.star_rounded,
                 ),
-                const SizedBox(width: 12),
+                const SizedBox(width: 8),
                 _StatBadge(
-                  label: 'vs Minggu Lalu',
+                  label: 'vs Mgg Lalu',
                   value: '${trend.isUp ? '+' : '-'}${trend.changePercent.toStringAsFixed(1)}%',
                   unit: trend.isUp ? 'naik' : 'turun',
                   color: trend.isUp ? AppColors.success : AppColors.error,
@@ -331,38 +331,48 @@ class _StatBadge extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
         decoration: BoxDecoration(
           color: color.withOpacity(0.06),
-          borderRadius: BorderRadius.circular(14),
+          borderRadius: BorderRadius.circular(12),
           border: Border.all(color: color.withOpacity(0.15)),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(icon, color: color, size: 16),
-            const SizedBox(height: 6),
-            Text(
-              value,
-              style: AppTextStyles.titleLarge.copyWith(
-                color: color,
-                fontWeight: FontWeight.w800,
-                fontSize: 15,
+            Icon(icon, color: color, size: 14),
+            const SizedBox(height: 4),
+            FittedBox(
+              fit: BoxFit.scaleDown,
+              alignment: Alignment.centerLeft,
+              child: Text(
+                value,
+                style: AppTextStyles.titleLarge.copyWith(
+                  color: color,
+                  fontWeight: FontWeight.w800,
+                  fontSize: 14,
+                ),
               ),
             ),
             Text(
               unit,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
               style: AppTextStyles.labelSmall.copyWith(
                 color: color.withOpacity(0.75),
                 fontWeight: FontWeight.w500,
+                fontSize: 9,
               ),
             ),
             const SizedBox(height: 2),
             Text(
               label,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
               style: AppTextStyles.labelSmall.copyWith(
                 color: AppColors.textSecondary,
-                fontSize: 9,
+                fontSize: 8.5,
               ),
             ),
           ],

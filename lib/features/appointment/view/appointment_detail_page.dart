@@ -122,48 +122,49 @@ class AppointmentDetailPage extends StatelessWidget {
             const SizedBox(height: 28),
 
             // Action buttons
-            Row(
-              children: [
-                Expanded(
-                  child: OutlinedButton.icon(
-                    onPressed: () => _showCancelDialog(context),
-                    style: OutlinedButton.styleFrom(
-                      foregroundColor: AppColors.error,
-                      side: const BorderSide(color: AppColors.error),
-                      padding: const EdgeInsets.symmetric(vertical: 14),
-                      minimumSize: Size.zero,
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
-                    ),
-                    icon: const Icon(Icons.cancel_outlined, size: 18),
-                    label: Text('Batalkan', style: AppTextStyles.labelLarge.copyWith(color: AppColors.error)),
-                  ),
-                ),
-                const SizedBox(width: 12),
-                Expanded(
-                  child: GestureDetector(
-                    onTap: () {
-                      _showRescheduleBottomSheet(context);
-                    },
-                    child: Container(
-                      height: 50,
-                      decoration: BoxDecoration(
-                        gradient: AppColors.primaryGradient,
-                        borderRadius: BorderRadius.circular(14),
-                        boxShadow: [BoxShadow(color: AppColors.primary.withOpacity(0.3), blurRadius: 10, offset: const Offset(0, 4))],
+            if (status != 'Selesai' && status != 'Dibatalkan')
+              Row(
+                children: [
+                  Expanded(
+                    child: OutlinedButton.icon(
+                      onPressed: () => _showCancelDialog(context),
+                      style: OutlinedButton.styleFrom(
+                        foregroundColor: AppColors.error,
+                        side: const BorderSide(color: AppColors.error),
+                        padding: const EdgeInsets.symmetric(vertical: 14),
+                        minimumSize: Size.zero,
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
                       ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Icon(Icons.edit_calendar_rounded, color: Colors.white, size: 18),
-                          const SizedBox(width: 8),
-                          Text('Reschedule', style: AppTextStyles.labelLarge.copyWith(color: Colors.white)),
-                        ],
-                      ),
+                      icon: const Icon(Icons.cancel_outlined, size: 18),
+                      label: Text('Batalkan', style: AppTextStyles.labelLarge.copyWith(color: AppColors.error)),
                     ),
                   ),
-                ),
-              ],
-            ),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: GestureDetector(
+                      onTap: () {
+                        _showRescheduleBottomSheet(context);
+                      },
+                      child: Container(
+                        height: 50,
+                        decoration: BoxDecoration(
+                          gradient: AppColors.primaryGradient,
+                          borderRadius: BorderRadius.circular(14),
+                          boxShadow: [BoxShadow(color: AppColors.primary.withOpacity(0.3), blurRadius: 10, offset: const Offset(0, 4))],
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Icon(Icons.edit_calendar_rounded, color: Colors.white, size: 18),
+                            const SizedBox(width: 8),
+                            Text('Reschedule', style: AppTextStyles.labelLarge.copyWith(color: Colors.white)),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             const SizedBox(height: 32),
           ],
         ),

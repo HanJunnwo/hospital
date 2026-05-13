@@ -43,7 +43,7 @@ class _AllDoctorsPageState extends State<AllDoctorsPage> {
 
   @override
   Widget build(BuildContext context) {
-    final cats = ['Semua', ...CategoryData.items.map((c) => c.name)];
+    final cats = CategoryData.items.map((c) => c.name).toList();
 
     return Scaffold(
       backgroundColor: AppColors.background,

@@ -61,7 +61,10 @@ class _NotificationPageState extends State<NotificationPage> {
         itemBuilder: (context, i) {
           final n = _items[i];
           return GestureDetector(
-            onTap: () => setState(() => n.isRead = true),
+            onTap: () {
+              setState(() => n.isRead = true);
+              _showNotificationDetail(context, n);
+            },
             child: AnimatedContainer(
               duration: const Duration(milliseconds: 200),
               padding: const EdgeInsets.all(14),
@@ -101,6 +104,100 @@ class _NotificationPageState extends State<NotificationPage> {
           );
         },
       ),
+    );
+  }
+
+  void _showNotificationDetail(BuildContext context, _NotifItem n) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (context) {
+        return Container(
+          padding: EdgeInsets.only(
+            left: 24,
+            right: 24,
+            top: 16,
+            bottom: MediaQuery.of(context).padding.bottom + 24,
+          ),
+          decoration: const BoxDecoration(
+            color: AppColors.background,
+            borderRadius: BorderRadius.vertical(top: Radius.circular(32)),
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(width: 40, height: 5, decoration: BoxDecoration(color: Colors.grey[300], borderRadius: BorderRadius.circular(10))),
+              const SizedBox(height: 32),
+              Container(
+                width: 80, height: 80,
+                decoration: BoxDecoration(
+                  color: n.color.withOpacity(0.1), 
+                  shape: BoxShape.circle,
+                  border: Border.all(color: n.color.withOpacity(0.2), width: 2),
+                ),
+                child: Icon(n.icon, color: n.color, size: 40),
+              ),
+              const SizedBox(height: 24),
+              Text(n.title, style: AppTextStyles.headlineSmall.copyWith(fontWeight: FontWeight.w800), textAlign: TextAlign.center),
+              const SizedBox(height: 8),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                decoration: BoxDecoration(
+                  color: AppColors.surfaceVariant,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(Icons.access_time_rounded, size: 14, color: AppColors.textSecondary),
+                    const SizedBox(width: 6),
+                    Text(n.time, style: AppTextStyles.labelMedium.copyWith(color: AppColors.textSecondary, fontWeight: FontWeight.w500)),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 32),
+              Container(
+                width: double.infinity,
+                padding: const EdgeInsets.all(24),
+                decoration: BoxDecoration(
+                  color: AppColors.surface,
+                  borderRadius: BorderRadius.circular(24),
+                  border: Border.all(color: AppColors.border.withOpacity(0.5)),
+                  boxShadow: [
+                    BoxShadow(color: AppColors.cardShadow.withOpacity(0.08), blurRadius: 24, offset: const Offset(0, 8)),
+                  ],
+                ),
+                child: Column(
+                  children: [
+                    const Icon(Icons.format_quote_rounded, color: AppColors.primary, size: 32),
+                    const SizedBox(height: 12),
+                    Text(
+                      n.message, 
+                      style: AppTextStyles.bodyLarge.copyWith(color: AppColors.textSecondary, height: 1.6), 
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 32),
+              SizedBox(
+                width: double.infinity,
+                height: 56,
+                child: ElevatedButton(
+                  onPressed: () => Navigator.pop(context),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.primary,
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                    elevation: 0,
+                  ),
+                  child: Text('Tutup', style: AppTextStyles.titleMedium.copyWith(color: Colors.white, fontWeight: FontWeight.w700)),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 }

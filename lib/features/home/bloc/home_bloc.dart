@@ -55,7 +55,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       final newIndex = current.selectedCategoryIndex == event.index ? -1 : event.index;
       List<DoctorModel> filtered;
       
-      if (newIndex == -1) {
+      if (newIndex == -1 || CategoryData.items[newIndex].id == 'all') {
         filtered = DoctorData.items;
       } else {
         // Find the category keyword, typically the first word (e.g. "Gigi" from "Gigi & Mulut")

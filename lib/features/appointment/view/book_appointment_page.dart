@@ -80,109 +80,149 @@ class _BookAppointmentPageState extends State<BookAppointmentPage> {
       context: context,
       barrierDismissible: false,
       builder: (_) => Dialog(
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(24)),
-        child: Padding(
-          padding: const EdgeInsets.all(28),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Container(
-                width: 80,
-                height: 80,
-                decoration: BoxDecoration(
-                  gradient: AppColors.primaryGradient,
-                  shape: BoxShape.circle,
-                  boxShadow: [
-                    BoxShadow(
-                      color: AppColors.primary.withOpacity(0.3),
-                      blurRadius: 20,
-                      offset: const Offset(0, 10),
-                    ),
-                  ],
-                ),
-                child: const Icon(
-                  Icons.check_rounded,
-                  color: Colors.white,
-                  size: 42,
-                ),
+        backgroundColor: Colors.transparent,
+        insetPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
+        child: Container(
+          width: double.infinity,
+          constraints: const BoxConstraints(maxWidth: 400),
+          decoration: BoxDecoration(
+            color: AppColors.background,
+            borderRadius: BorderRadius.circular(28),
+            boxShadow: [
+              BoxShadow(
+                color: AppColors.cardShadow.withOpacity(0.1),
+                blurRadius: 32,
+                offset: const Offset(0, 16),
               ),
-              const SizedBox(height: 24),
-              Text('Booking Berhasil!',
-                  style: AppTextStyles.headlineSmall
-                      .copyWith(fontWeight: FontWeight.w700)),
-              const SizedBox(height: 8),
-              Text(
-                'Janji temu dengan ${doctor.name} telah berhasil dikonfirmasi dan dijadwalkan.',
-                style: AppTextStyles.bodySmall
-                    .copyWith(color: AppColors.textSecondary, height: 1.5),
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(height: 24),
-              Container(
-                padding: const EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                  color: AppColors.surfaceVariant,
-                  borderRadius: BorderRadius.circular(20),
-                  border: Border.all(color: AppColors.primary.withOpacity(0.1)),
-                ),
-                child: Column(
-                  children: [
-                    _ConfirmRow(
-                      icon: Icons.person_outline_rounded,
-                      label: 'Dokter',
-                      value: doctor.name,
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.symmetric(vertical: 12),
-                      child: Divider(height: 1, color: AppColors.divider),
-                    ),
-                    _ConfirmRow(
-                      icon: Icons.calendar_today_outlined,
-                      label: 'Tanggal',
-                      value:
-                          '${selected['day']}, ${selected['date']} ${selected['month']}',
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.symmetric(vertical: 12),
-                      child: Divider(height: 1, color: AppColors.divider),
-                    ),
-                    _ConfirmRow(
-                      icon: Icons.access_time_rounded,
-                      label: 'Waktu',
-                      value: '$_selectedTime WIB',
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 32),
-              GestureDetector(
-                onTap: () {
-                  Navigator.of(context).pop();
-                  context.go(AppRoutes.schedule);
-                },
-                child: Container(
+            ],
+          ),
+          child: SingleChildScrollView(
+            physics: const BouncingScrollPhysics(),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Container(
                   width: double.infinity,
-                  height: 54,
+                  padding: const EdgeInsets.only(top: 32, bottom: 24),
                   decoration: BoxDecoration(
-                    gradient: AppColors.primaryGradient,
-                    borderRadius: BorderRadius.circular(16),
-                    boxShadow: [
-                      BoxShadow(
-                        color: AppColors.primary.withOpacity(0.3),
-                        blurRadius: 12,
-                        offset: const Offset(0, 4),
+                    color: AppColors.primary.withOpacity(0.05),
+                    borderRadius: const BorderRadius.vertical(top: Radius.circular(28)),
+                  ),
+                  child: Column(
+                    children: [
+                      Container(
+                        width: 72,
+                        height: 72,
+                        decoration: BoxDecoration(
+                          color: AppColors.surface,
+                          shape: BoxShape.circle,
+                          border: Border.all(color: AppColors.success, width: 3),
+                          boxShadow: [
+                            BoxShadow(
+                              color: AppColors.success.withOpacity(0.2),
+                              blurRadius: 16,
+                              offset: const Offset(0, 8),
+                            ),
+                          ],
+                        ),
+                        child: const Center(
+                          child: Icon(
+                            Icons.check_rounded,
+                            color: AppColors.success,
+                            size: 36,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                      Text(
+                        'Booking Berhasil!',
+                        style: AppTextStyles.headlineSmall.copyWith(
+                          fontWeight: FontWeight.w800,
+                          color: AppColors.textPrimary,
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 24),
+                        child: Text(
+                          'Janji temu Anda telah dikonfirmasi dan dijadwalkan.',
+                          style: AppTextStyles.bodyMedium.copyWith(
+                            color: AppColors.textSecondary,
+                            height: 1.5,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
                       ),
                     ],
                   ),
-                  child: Center(
-                    child: Text('Lihat Jadwal Saya',
-                        style: AppTextStyles.titleMedium
-                            .copyWith(color: Colors.white, fontWeight: FontWeight.w600)),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(24),
+                  child: Column(
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.all(16),
+                        decoration: BoxDecoration(
+                          color: AppColors.surface,
+                          borderRadius: BorderRadius.circular(20),
+                          border: Border.all(color: AppColors.border.withOpacity(0.5)),
+                        ),
+                        child: Column(
+                          children: [
+                            _ConfirmRow(
+                              icon: Icons.person_outline_rounded,
+                              label: 'Dokter',
+                              value: doctor.name,
+                            ),
+                            const Padding(
+                              padding: EdgeInsets.symmetric(vertical: 12),
+                              child: Divider(height: 1, color: AppColors.divider),
+                            ),
+                            _ConfirmRow(
+                              icon: Icons.calendar_today_outlined,
+                              label: 'Tanggal',
+                              value: '${selected['day']}, ${selected['date']} ${selected['month']}',
+                            ),
+                            const Padding(
+                              padding: EdgeInsets.symmetric(vertical: 12),
+                              child: Divider(height: 1, color: AppColors.divider),
+                            ),
+                            _ConfirmRow(
+                              icon: Icons.access_time_rounded,
+                              label: 'Waktu',
+                              value: '$_selectedTime WIB',
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 28),
+                      SizedBox(
+                        width: double.infinity,
+                        height: 54,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                            context.go(AppRoutes.schedule);
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: AppColors.primary,
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                            elevation: 0,
+                          ),
+                          child: Text(
+                            'Lihat Jadwal Saya',
+                            style: AppTextStyles.titleMedium.copyWith(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

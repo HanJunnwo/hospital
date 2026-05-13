@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:hospital/main.dart';
+import 'package:a_medix/main.dart';
 
 void main() {
   testWidgets('App smoke test', (WidgetTester tester) async {
